@@ -1322,14 +1322,13 @@ class autoXAS:
                                 "Length of list must match number of experiments."
                             )
                         if isinstance(standards_to_use[i][0], int):
-                            for exp_standards_to_use in standards_to_use:
-                                component_names = [
-                                    component_names[i] for i in exp_standards_to_use
-                                ]
-                                component_measurements = [
-                                    component_measurements[i]
-                                    for i in exp_standards_to_use
-                                ]
+                            exp_standards_to_use = standards_to_use[i]
+                            component_names = [
+                                component_names[j] for j in exp_standards_to_use
+                            ]
+                            component_measurements = [
+                                component_measurements[j] for j in exp_standards_to_use
+                            ]
                         elif isinstance(standards_to_use[i][0], str):
                             exp_standards_to_use = standards_to_use[i]
                             component_measurements = [
@@ -1850,7 +1849,7 @@ class autoXAS:
             nmf_k.append(k)
 
         self.NMF_component_results["Error Change"] = error_change_list
-        
+
         return nmf_k
 
     def MCR_ALS(self):
@@ -4229,6 +4228,7 @@ class autoXAS:
             raise NotImplementedError("Matplotlib plot not implemented yet")
 
         return None
+
 
 # %% Other functions
 
